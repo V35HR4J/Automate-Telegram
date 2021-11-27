@@ -20,4 +20,4 @@ It can also be very useful in performing Recon.
 
 let me know if i need to provide video tutorial for setup, i will be more than happy to help you out.
 
-Pull Requests are also appriciated if you have idea to improve. 🙂
+Pull Requests are also appreciated if you have idea to improve. 🙂
