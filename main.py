@@ -15,35 +15,71 @@ logger = logging.getLogger(__name__)
 f=open("config.json",'r')
 data = json.load(f)
 token=data['TOKEN']
+tg_id = data['TGID']
 
 
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
-    user = update.effective_user
-    update.message.reply_markdown_v2(
-        fr'Hi {user.mention_markdown_v2()}\!',
-        reply_markup=ForceReply(selective=True),
-    )
+    chat_id = update.message.chat.id
+    if tg_id == str(chat_id):
+        user = update.effective_user
+        update.message.reply_markdown_v2(
+            fr'Hi {user.mention_markdown_v2()}\!',
+            reply_markup=ForceReply(selective=True),
+        )
+    else:
+        user = update.effective_user
+        update.message.reply_markdown_v2(
+            fr'Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! ',
+            reply_markup=ForceReply(selective=True),
+        )
+
+
 
 
 def help_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /help is issued."""
-    update.message.reply_text('Hi there!\nType /cmd yourcommand for executing terminal commands and /send filename to get files downloaded.')
+    chat_id = update.message.chat.id
+    if tg_id == str(chat_id):
+        update.message.reply_text('Hi there!\nType /cmd yourcommand for executing terminal commands and /send filename to get files downloaded.')
+    else:
+        user = update.effective_user
+        update.message.reply_markdown_v2(
+            fr'Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! ',
+            reply_markup=ForceReply(selective=True),
+        )
+    
 
 
 def cmd(update: Update, context: CallbackContext) -> None:
     """Execute Command when the command /cmd is issued."""
-    comand = update.message.text.split(" ",1)[1]
-    output = subprocess.getoutput(comand)
-    update.message.reply_text(f'<code>{output}</code>', parse_mode='HTML')
-    print(comand)
+    chat_id = update.message.chat.id
+    if tg_id == str(chat_id):
+        comand = update.message.text.split(" ",1)[1]
+        output = subprocess.getoutput(comand)
+        update.message.reply_text(f'<code>{output}</code>', parse_mode='HTML')
+        print(comand)
+    else:
+        user = update.effective_user
+        update.message.reply_markdown_v2(
+            fr'Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! ',
+            reply_markup=ForceReply(selective=True),
+        )
 
 def send(update, context):
     """Send File when the command /send is issued."""
     chat_id = update.message.chat.id
-    bot = context.bot
-    file = update.message.text.split()[1]
-    bot.send_document(chat_id=chat_id, document=open(file, 'rb'))
+    if tg_id == str(chat_id):
+        chat_id = update.message.chat.id
+        bot = context.bot
+        file = update.message.text.split()[1]
+        bot.send_document(chat_id=chat_id, document=open(file, 'rb'))
+    else:
+        user = update.effective_user
+        update.message.reply_markdown_v2(
+            fr'Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! ',
+            reply_markup=ForceReply(selective=True),
+        )
 
 def main() -> None:
     updater = Updater(token)
@@ -54,7 +90,7 @@ def main() -> None:
     dispatcher.add_handler(CommandHandler("send", send))
     updater.start_polling()
     updater.idle()
-
+   
 
 if __name__ == '__main__':
     main()
