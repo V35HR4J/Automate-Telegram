@@ -18,6 +18,9 @@ It can also be very useful in performing Recon.
 1. /cmd {yourCommand}
 2. /send {desiredfilename}
 
-let me know if i need to provide video tutorial for setup, i will be more than happy to help you out.
+## Watch the video:
+[![Watch the video](https://i.imgur.com/yotnyJZ.jpeg)](https://youtu.be/cpdY3bkFBuY)
+
+Let me know if i need to provide video tutorial for setup, i will be more than happy to help you out.
 
 Pull Requests are also appreciated if you have idea to improve. 🙂
