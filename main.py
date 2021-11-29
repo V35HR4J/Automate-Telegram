@@ -57,7 +57,12 @@ def cmd(update: Update, context: CallbackContext) -> None:
     if tg_id == str(chat_id):
         comand = update.message.text.split(" ",1)[1]
         output = subprocess.getoutput(comand)
-        update.message.reply_text(f'<code>{output}</code>', parse_mode='HTML')
+        if len(output) >4096:
+            for i in range(0, len(output), 4096):  
+                temp=output[ i : i+4096]
+                update.message.reply_text(f'<code>{temp}</code>', parse_mode='HTML')
+        else:
+            update.message.reply_text(f'<code>{output}</code>', parse_mode='HTML')
         print(comand)
     else:
         user = update.effective_user
