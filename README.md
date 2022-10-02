@@ -5,15 +5,15 @@ It can also be very useful in performing Recon.
 
 ## How to configure:
 
-- Goto @BotFather and create newbot, you will be given a unique token.
+- Clone this repo and install requirements by: `pip3 install -r requirements.txt`.
 
-- Replace the token with value XXXX on config.json with the unique API Token
+- If you are using poetry, navigate to the repository directory and use `poetry install`.
+
+- Goto @BotFather and create newbot, you will be given a unique token.
 
 - Send "/id" to @MissRose_bot to recieve your chat id to be used for authentication.
 
-- Replace the chat id with value YYYY in config.json.
-
-- Clone this repo and install requirements by: `pip3 install -r requirements.txt`
+- Create a .env file and follow the sample.env to set the token and id as environment variables.
 
 - Navigate to the repo directory and run the program with `python3 main.py`
 
