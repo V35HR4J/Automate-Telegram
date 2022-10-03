@@ -5,24 +5,19 @@ It can also be very useful in performing Recon.
 
 ## How to configure:
 
-- Clone this repo and install requirements by: `pip3 install -r requirements.txt`.
-
-- If you are using poetry, navigate to the repository directory and use `poetry install`.
-
+- Clone this repo and install requirements by: `pip3 install -r requirements.txt`
 - Goto @BotFather and create newbot, you will be given a unique token.
-
+- Replace the token with value XXXX on config.json with the unique API Token
 - Send "/id" to @MissRose_bot to recieve your chat id to be used for authentication.
-
-- Create a .env file and follow the sample.env to set the token and id as environment variables.
-
+- Replace the chat id with value YYYY in config.json.
 - Navigate to the repo directory and run the program with `python3 main.py`
-
 - You are ready to go, type /start on bot's DM to get started.
 
 ## Commands added as of Now:
 
 1. /cmd {yourCommand}
 2. /send {desiredfilename}
+3. /download {url}
 
 ## Watch the video:
 
