@@ -11,7 +11,7 @@ It can also be very useful in performing Recon.
 
 - Goto @BotFather and create newbot, you will be given a unique token.
 
-- Send "/id" to @MissRose_bot to recieve your chat id to be used for authentication.
+- Send "/id" to @MissRose_bot to receive your chat id to be used for authentication.
 
 - Create a .env file and follow the sample.env to set the token and id as environment variables.
 
