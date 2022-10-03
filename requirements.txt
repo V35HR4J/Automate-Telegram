@@ -1,1 +1,4 @@
 python-telegram-bot
+python3-poetry
+python-dotenv
+cachecontrol
