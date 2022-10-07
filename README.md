@@ -20,7 +20,7 @@ It can also be very useful in performing Recon.
     - You are ready to go, type `/start` on bot's DM to get started.
 - ### Docker Installation
     - Clone this repo and navigate to project directory. 
-    - Run `docker build -t automate-telegram`
+    - Run `docker build -t automate-telegram .`
     - Run `docker run -d automate-telegram`
 
 ## Commands available:
