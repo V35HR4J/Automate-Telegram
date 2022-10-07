@@ -22,6 +22,7 @@ logger = logging.getLogger(__name__)
 f = open("config.json", "r")
 data = json.load(f)
 token = data["TOKEN"]
+print(token)
 tg_id = data["TGID"]
 
 
@@ -59,8 +60,7 @@ def start(update: Update, context: CallbackContext) -> None:
     else:
         user = update.effective_user
         update.message.reply_markdown_v2(
-            rf"Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! ",
-            reply_markup=ForceReply(selective=True),
+            rf"Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! "
         )
 
 
@@ -69,7 +69,7 @@ def help_command(update: Update, context: CallbackContext) -> None:
     chat_id = update.message.chat.id
     if tg_id == str(chat_id):
         update.message.reply_text(
-            "Hi there!\nType /cmd <yourcommand>, for executing terminal commands \n /send <filename>, to get files downloaded \n /download <file_from_server> to download file from server to your PC."
+            "<b> <code>/cmd [command]</code> - for executing terminal commands \n <code>/send [Filename]</code> - to get files downloaded \n <code>/download [file_from_server]</code> - to download file from server to your PC.</b>", parse_mode="HTML"
         )
     else:
         user = update.effective_user
@@ -81,7 +81,9 @@ def help_command(update: Update, context: CallbackContext) -> None:
 
 def cmd(update: Update, context: CallbackContext) -> None:
     """Execute Command when the command /cmd is issued."""
-    chat_id = update.message.chat.id
+    if update.message.chat:
+        chat_id = update.message.chat.id
+
     if tg_id == str(chat_id):
         comand = update.message.text.split(" ", 1)[1]
         print(comand)
@@ -112,7 +114,7 @@ def send(update, context):
 
 
 def download_files(update, context):
-    """Download file to ypur computer"""
+    """Download file to your computer"""
     chat_id = update.message.chat.id
     if tg_id == str(chat_id):
         comand = update.message.text.split(" ", 1)[1]
