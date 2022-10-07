@@ -3,21 +3,31 @@ By configuring the code in your VPS,
 You can execute commands and get your output within telegram.
 It can also be very useful in performing Recon.
 
-## How to configure:
+## How to Get configs:
+- ### Token - Your personal bots token
+    - Goto @BotFather and create newbot, you will be given a unique token.
+    - Replace the token with value XXXX on config.json with the unique API Token
 
-- Clone this repo and install requirements by: `pip3 install -r requirements.txt`
-- Goto @BotFather and create newbot, you will be given a unique token.
-- Replace the token with value XXXX on config.json with the unique API Token
-- Send "/id" to @MissRose_bot to recieve your chat id to be used for authentication.
-- Replace the chat id with value YYYY in config.json.
-- Navigate to the repo directory and run the program with `python3 main.py`
-- You are ready to go, type /start on bot's DM to get started.
+- ### Tgid - It's the user that's only authenticated to run commands in Telegram
+    - Send "/id" to @MissRose_bot to recieve your chat id to be used for authentication.
+    - Replace the chat id with value YYYY in config.json.
 
-## Commands added as of Now:
+## Installation
+    Get the configs following the above Sections first
+- ### Normal Installation
+    - Clone this repo and navigate to the project directory and install requirements by: `pip3 install -r requirements.txt`
+    - Run the program with `python3 main.py`
+    - You are ready to go, type `/start` on bot's DM to get started.
+- ### Docker Installation
+    - Clone this repo and navigate to project directory. 
+    - Run `docker build -t automate-telegram`
+    - Run `docker run -d automate-telegram`
 
-1. /cmd {yourCommand}
-2. /send {desiredfilename}
-3. /download {url}
+## Commands available:
+
+1. /cmd [Command]
+2. /send [DesiredFilename]
+3. /download [FileUrl]
 
 ## Watch the video:
 
