@@ -13,11 +13,18 @@ It can also be very useful in performing Recon.
     - Replace the chat id with value YYYY in config.json.
 
 ## Installation
-    Get the configs following the above Sections first
+    Get the configs following the above Sections first 
 - ### Normal Installation
     - Clone this repo and navigate to the project directory and install requirements by: `pip3 install -r requirements.txt`
+    - Or you can also paste this one-liner : 
+    - ```
+       git clone https://github.com/V35HR4J/Automate-Telegram && cd Automate-Telegram && pip3 install -r requirements.txt && nano config.json
+      ```
+    - Replace the token with value XXXX with your unique API Token.
     - Run the program with `python3 main.py`
     - You are ready to go, type `/start` on bot's DM to get started.
+
+   
 - ### Docker Installation
     - Clone this repo and navigate to project directory. 
     - Run `docker build -t automate-telegram .`
