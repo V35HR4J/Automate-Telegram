@@ -1,1 +1,1 @@
-{ "TOKEN": "XXXX", "TGID": "YYYY" }
+{ "TOKEN": "XXXX", "TGID": ["YYYY","ZZZZZ"] }
