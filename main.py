@@ -51,7 +51,7 @@ def command_handler(update, command):
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
     chat_id = update.message.chat.id
-    if tg_id == str(chat_id):
+    if str(chat_id) in tg_id:
         user = update.effective_user
         update.message.reply_markdown_v2(
             rf"Hi {user.mention_markdown_v2()}\!",
@@ -67,7 +67,7 @@ def start(update: Update, context: CallbackContext) -> None:
 def help_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /help is issued."""
     chat_id = update.message.chat.id
-    if tg_id == str(chat_id):
+    if str(chat_id) in tg_id:
         update.message.reply_text(
             "<b> <code>/cmd [command]</code> - for executing terminal commands \n <code>/send [Filename]</code> - to get files downloaded \n <code>/download [file_from_server]</code> - to download file from server to your PC.</b>", parse_mode="HTML"
         )
@@ -84,7 +84,7 @@ def cmd(update: Update, context: CallbackContext) -> None:
     if update.message.chat:
         chat_id = update.message.chat.id
 
-    if tg_id == str(chat_id):
+    if str(chat_id) in tg_id:
         comand = update.message.text.split(" ", 1)[1]
         print(comand)
         t = threading.Thread(target=command_handler, args=[update, comand])
@@ -100,7 +100,7 @@ def cmd(update: Update, context: CallbackContext) -> None:
 def send(update, context):
     """Send File when the command /send is issued."""
     chat_id = update.message.chat.id
-    if tg_id == str(chat_id):
+    if str(chat_id) in tg_id:
         chat_id = update.message.chat.id
         bot = context.bot
         file = update.message.text.split()[1]
@@ -116,7 +116,7 @@ def send(update, context):
 def download_files(update, context):
     """Download file to your computer"""
     chat_id = update.message.chat.id
-    if tg_id == str(chat_id):
+    if str(chat_id) in tg_id:
         comand = update.message.text.split(" ", 1)[1]
         comand = f'curl -O {comand}'
         output = subprocess.getoutput(comand)
