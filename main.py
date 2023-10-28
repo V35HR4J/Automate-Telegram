@@ -32,13 +32,13 @@ def message_display(output, update):
             pass
             for i in range(0, len(output), 4096):
                 temp = output[i: i + 4096]
-                update.message.reply_text(
+                update.effective_message.reply_text(
                     f"<code>{temp}</code>", parse_mode="HTML")
         else:
-            update.message.reply_text(
+            update.effective_message.reply_text(
                 f"<code>{output}</code>", parse_mode="HTML")
     except:
-        update.message.reply_text(
+        update.effective_message.reply_text(
             f"<code>Some error has occured with your command</code>", parse_mode="HTML")
 
 
@@ -50,30 +50,30 @@ def command_handler(update, command):
 
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
-    chat_id = update.message.chat.id
+    chat_id = update.effective_message.chat.id
     if str(chat_id) in tg_id:
         user = update.effective_user
-        update.message.reply_markdown_v2(
+        update.effective_message.reply_markdown_v2(
             rf"Hi {user.mention_markdown_v2()}\!",
             reply_markup=ForceReply(selective=True),
         )
     else:
         user = update.effective_user
-        update.message.reply_markdown_v2(
+        update.effective_message.reply_markdown_v2(
             rf"Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! "
         )
 
 
 def help_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /help is issued."""
-    chat_id = update.message.chat.id
+    chat_id = update.effective_message.chat.id
     if str(chat_id) in tg_id:
-        update.message.reply_text(
+        update.effective_message.reply_text(
             "<b> <code>/cmd [command]</code> - for executing terminal commands \n <code>/send [Filename]</code> - to get files downloaded \n <code>/download [file_from_server]</code> - to download file from server to your PC.</b>", parse_mode="HTML"
         )
     else:
         user = update.effective_user
-        update.message.reply_markdown_v2(
+        update.effective_message.reply_markdown_v2(
             rf"Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! ",
             reply_markup=ForceReply(selective=True),
         )
@@ -81,17 +81,14 @@ def help_command(update: Update, context: CallbackContext) -> None:
 
 def cmd(update: Update, context: CallbackContext) -> None:
     """Execute Command when the command /cmd is issued."""
-    if update.message.chat:
-        chat_id = update.message.chat.id
-
-    if str(chat_id) in tg_id:
-        comand = update.message.text.split(" ", 1)[1]
+    if str(update.effective_user.id) in tg_id:
+        comand = update.effective_message.text.split(" ", 1)[1]
         print(comand)
         t = threading.Thread(target=command_handler, args=[update, comand])
         t.start()
     else:
         user = update.effective_user
-        update.message.reply_markdown_v2(
+        update.effective_message.reply_markdown_v2(
             rf"Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! ",
             reply_markup=ForceReply(selective=True),
         )
@@ -99,15 +96,15 @@ def cmd(update: Update, context: CallbackContext) -> None:
 
 def send(update, context):
     """Send File when the command /send is issued."""
-    chat_id = update.message.chat.id
+    chat_id = update.effective_message.chat.id
     if str(chat_id) in tg_id:
-        chat_id = update.message.chat.id
+        chat_id = update.effective_message.chat.id
         bot = context.bot
-        file = update.message.text.split()[1]
+        file = update.effective_message.text.split()[1]
         bot.send_document(chat_id=chat_id, document=open(file, "rb"))
     else:
         user = update.effective_user
-        update.message.reply_markdown_v2(
+        update.effective_message.reply_markdown_v2(
             rf"Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! ",
             reply_markup=ForceReply(selective=True),
         )
@@ -115,15 +112,15 @@ def send(update, context):
 
 def download_files(update, context):
     """Download file to your computer"""
-    chat_id = update.message.chat.id
+    chat_id = update.effective_message.chat.id
     if str(chat_id) in tg_id:
-        comand = update.message.text.split(" ", 1)[1]
+        comand = update.effective_message.text.split(" ", 1)[1]
         comand = f'curl -O {comand}'
         output = subprocess.getoutput(comand)
         message_display('File Downloaded, check your computer folder', update)
     else:
         user = update.effective_user
-        update.message.reply_markdown_v2(
+        update.effective_message.reply_markdown_v2(
             rf"Hi {user.mention_markdown_v2()}\! You are not authorized to use this bot\! ",
             reply_markup=ForceReply(selective=True),
         )
