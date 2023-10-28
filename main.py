@@ -19,11 +19,10 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Read Token:
-f = open("config.json", "r")
-data = json.load(f)
-token = data["TOKEN"]
-print(token)
-tg_id = data["TGID"]
+with open("config.json", "r") as f:
+    data = json.load(f)
+    token = data["TOKEN"]
+    tg_id = data["TGID"]
 
 
 def message_display(output, update):
